@@ -218,11 +218,15 @@
 
 ​    // Would return `[revert(tBA), apply(tAB), apply(tAA)]`
 
+//ChainGetPath返回从一个tipset到另一个tipset所需的一组revert/apply操作，例如：
+
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.ChainGetPath", "params": [from types.TipSetKey,  to  types.TipSetKey], "id": 3}
 
  
 
 18.ChainExport returns a stream of bytes with CAR dump of chain data.
+
+//ChainExport返回一个字节流，其中包含链数据的CAR dump。
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.ChainExport", "params": [types.TipSetKey], "id": 3}
 
@@ -236,15 +240,21 @@
 
 // observing the lotus sync service.
 
+//Sync method组包含用于与lotussync服务交互和观察的方法。
+
  
 
 1. SyncState returns the current status of the lotus sync system.
+
+   //返回lotussync系统的当前状态。
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.SyncState ", "params": [], "id": 3}
 
  
 
 2.// SyncSubmitBlock can be used to submit a newly created block to the. network through this node
+
+//SyncSubmitBlock可用于通过此节点向网络提交新创建的块
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.SyncSubmitBlock", "params": [blk *types.BlockMsg
 
@@ -254,17 +264,23 @@
 
 3.// SyncMarkBad marks a blocks as bad, meaning that it won't ever by synced. Use with extreme caution.
 
+//SycMcAdBad标记块是坏的，这意味着它永远不会同步。使用时要格外小心。
+
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.SyncMarkBad", "params": [cid.Cid], "id": 3}
 
  
 
 4.// SyncCheckBad checks if a block was marked as bad, and if it was, returns the reason.
 
+//SyncCheckBad检查块是否标记为坏的，如果是，则返回原因。
+
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.SyncCheckBad", "params": [cid.Cid], "id": 3}
 
  
 
 5.// SyncIncomingBlocks returns a channel streaming incoming, potentially not yet synced block headers.
+
+////SyncIncomingBlocks返回一个通道流传入，可能尚未同步的块头。
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.SyncIncomingBlocks", "params": [cid.Cid], "id": 3}
 
@@ -278,9 +294,13 @@
 
 ​    // manages all incoming and outgoing 'messages' going over the network.
 
- 
+ //Mpool方法用于与消息池交互。消息池管理所有通过网络传入和传出的“消息”。
+
+
 
 1.MpoolPending returns pending mempool messages.
+
+//MpoolPending返回挂起的mempool消息。
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.MpoolPending", "params": [types.TipSetKey
 
@@ -290,11 +310,15 @@
 
 2.MpoolPush pushes a signed message to mempool
 
+//MpoolPush将签名消息推送到mempool
+
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.MpoolPush", "params": [*types.SignedMessage], "id": 3}
 
  
 
 3.// MpoolPushMessage atomically assigns a nonce, signs, and pushes a message to mempool.
+
+//MpoolPushMessage原子性地分配一个nonce、签名并将消息推送到mempool。
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.MpoolPushMessage", "params": [*types.Message], "id": 3}
 
@@ -304,6 +328,10 @@
 
 // Note that this method may not be atomic. Use MpoolPushMessage instead.
 
+//MpoolGetNonce获取指定发送方的下一个nonce。
+
+//请注意，此方法可能不是原子的。请改用MpoolPushMessage。
+
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.MpoolGetNonce", "params": [address], "id": 3}
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.MpoolSub", "params": [], "id": 3}
@@ -312,7 +340,9 @@
 
 5.// MpoolEstimateGasPrice estimates what gas price should be used for a
 
-// message to have high likelihood of inclusion in `nblocksincl` epochs.
+// message to have high likelihood of inclusion in ‘nblocksincl’ epochs.
+
+//mpoolestimategsprice估计一条消息应该使用什么样的gas价格，以使其很有可能被纳入“nblocksincl”时代。
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.MpoolEstimateGasPrice", "params": [nblocksincl uint64, sender address.Address, gaslimit int64, tsk types.TipSetKey], "id": 3}
 
@@ -336,13 +366,29 @@
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.WalletNew ", "params": [crypto.SigType], "id": 3}
 
-   
+返回： 
+
+  {
+    "jsonrpc": "2.0",
+    "result": "t122jxwayipdlgskgp7yhthq75h54xelfh2jymyja",
+    "id": 3
+}
 
 2.// WalletHas indicates whether the given address is in the wallet.
 
 ​    WalletHas(context.Context, address.Address) (bool, error)
 
-请求：{ "jsonrpc": "2.0", "method": "Filecoin.WalletHas", "params": [address.Address], "id": 3}
+请求：
+
+{ "jsonrpc": "2.0", "method": "Filecoin.WalletHas", "params": ["t1h56cv4v6t7nzztbo6rzusthm6bhy3dvr5qeahsa"], "id": 3}
+
+返回：
+
+{
+    "jsonrpc": "2.0",
+    "result": true,
+    "id": 3
+}
 
    
 
@@ -352,7 +398,14 @@ WalletList(context.Context) ([]address.Address, error)
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.WalletList ", "params": [], "id": 3}
 
- 
+ {
+    "jsonrpc": "2.0",
+    "result": [
+        "t126xxiiulnkuossapqwtrqd7rax7zaufcosmzgtq",
+        "t1zljwugrgdbdd2nlr66mspdl5dkpvjyt4pqatlxi"
+    ],
+    "id": 3
+}
 
 4. // WalletBalance returns the balance of the given address at the current head of the chain.
 
