@@ -362,6 +362,8 @@
 
 1.// WalletNew creates a new address in the wallet with the given sigType.
 
+   //WalletNew使用给定的sigType在电子钱包中创建一个新地址。
+
 ​    WalletNew(context.Context, crypto.SigType) (address.Address, error)
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.WalletNew ", "params": [crypto.SigType], "id": 3}
@@ -375,6 +377,8 @@
 }
 
 2.// WalletHas indicates whether the given address is in the wallet.
+
+//WalletHas表示给定地址是否在钱包中。
 
 ​    WalletHas(context.Context, address.Address) (bool, error)
 
@@ -394,6 +398,8 @@
 
 3. // WalletList lists all the addresses in the wallet.
 
+   //WalletList列出了钱包中的所有地址。
+
 WalletList(context.Context) ([]address.Address, error)
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.WalletList ", "params": [], "id": 3}
@@ -409,6 +415,8 @@ WalletList(context.Context) ([]address.Address, error)
 
 4. // WalletBalance returns the balance of the given address at the current head of the chain.
 
+   //WalletBalance返回给定地址在当前链头的余额。
+
 WalletBalance(context.Context, address.Address) (types.BigInt, error)
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.WalletBalance", "params": [address.Address], "id": 3}
@@ -417,6 +425,8 @@ WalletBalance(context.Context, address.Address) (types.BigInt, error)
 
 5. // WalletSign signs the given bytes using the given address.
 
+   //WalletSign使用给定地址对给定字节进行签名。
+
 ​    WalletSign(context.Context, address.Address, []byte) (*crypto.Signature, error)
 
  请求：{ "jsonrpc": "2.0", "method": "Filecoin.WalletSign", "params": [address.Address, []byte], "id": 3}
@@ -424,6 +434,8 @@ WalletBalance(context.Context, address.Address) (types.BigInt, error)
  
 
 6. // WalletSignMessage signs the given message using the given address.
+
+   //WalletSignMessage使用给定的地址对给定的消息进行签名。
 
 ​    WalletSignMessage(context.Context, address.Address, *types.Message) (*types.SignedMessage, error)
 
@@ -435,6 +447,10 @@ WalletBalance(context.Context, address.Address) (types.BigInt, error)
 
 ​    // The address does not have to be in the wallet.
 
+//WalletVerify接受地址、签名和一些字节，并指示签名是否有效。
+
+//地址不必在钱包中。
+
 ​    WalletVerify(context.Context, address.Address, []byte, *crypto.Signature) bool
 
 请求：{"jsonrpc":"2.0","method":"Filecoin.WalletVerify","params": [address.Address, []byte, *crypto.Signature], "id": 3}
@@ -442,6 +458,8 @@ WalletBalance(context.Context, address.Address) (types.BigInt, error)
  
 
  8.// WalletDefaultAddress returns the address marked as default in the wallet.
+
+//WalletDefaultAddress返回钱包中标记为默认的地址。
 
 ​    WalletDefaultAddress(context.Context) (address.Address, error)
 
@@ -451,6 +469,8 @@ WalletBalance(context.Context, address.Address) (types.BigInt, error)
 
 9. // WalletSetDefault marks the given address as as the default one.
 
+   //WalletSetDefault将给定地址标记为默认地址。
+
 ​    WalletSetDefault(context.Context, address.Address) error
 
 ​    请求：{"jsonrpc":"2.0","method":"Filecoin.WalletSetDefault","params": [address.Address], "id": 3}
@@ -458,6 +478,8 @@ WalletBalance(context.Context, address.Address) (types.BigInt, error)
  
 
 10.// WalletExport returns the private key of an address in the wallet.
+
+//WalletExport返回钱包中某个地址的私钥。
 
 ​    WalletExport(context.Context, address.Address) (*types.KeyInfo, error)
 
@@ -467,6 +489,8 @@ WalletBalance(context.Context, address.Address) (types.BigInt, error)
 
 11. // WalletImport receives a KeyInfo, which includes a private key, and imports it into the wallet.
 
+    //WalletImport接收一个KeyInfo，其中包含一个私钥，并将其导入到wallet中。
+
 ​    WalletImport(context.Context, *types.KeyInfo) (address.Address, error)
 
    请求：{"jsonrpc":"2.0","method":"Filecoin.WalletImport","params": [*types.KeyInfo], "id": 3}
@@ -474,6 +498,8 @@ WalletBalance(context.Context, address.Address) (types.BigInt, error)
  
 
    12.// WalletDelete deletes an address from the wallet.
+
+​	//WalletDelete从电子钱包中删除一个地址。
 
 ​    WalletDelete(context.Context, address.Address) error
 
@@ -489,21 +515,29 @@ WalletBalance(context.Context, address.Address) (types.BigInt, error)
 
 ​    // retrieval markets as a client
 
- 
+ 	//客户端方法都与作为客户机的存储和检索市场的交互有关
 
-​    // ClientImport imports file under the specified path into filestore.
+
+
+​    1.// ClientImport imports file under the specified path into filestore.
+
+//ClientImport将指定路径下的文件导入文件存储。
 
 ClientImport(ctx context.Context, ref FileRef) (cid.Cid, error)
 
  
 
-​    // ClientStartDeal proposes a deal with a miner.
+​    2.// ClientStartDeal proposes a deal with a miner.
+
+//ClientStartDeal提议与矿工达成协议。
 
 ClientStartDeal(ctx context.Context, params *StartDealParams) (*cid.Cid, error)
 
  
 
-​    // ClientGetDealInfo returns the latest information about a given deal.
+​    3.// ClientGetDealInfo returns the latest information about a given deal.
+
+//ClientGetDealInfo返回有关给定交易的最新信息。
 
 ClientGetDealInfo(context.Context, cid.Cid) (*DealInfo, error)
 
