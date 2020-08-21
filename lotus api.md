@@ -545,11 +545,15 @@ ClientGetDealInfo(context.Context, cid.Cid) (*DealInfo, error)
 
 ​    // ClientListDeals returns information about the deals made by the local client.
 
+//ClientListDeals返回有关本地客户端所做交易的信息。
+
 ClientListDeals(ctx context.Context) ([]DealInfo, error)
 
  
 
 ​    // ClientHasLocal indicates whether a certain CID is locally stored.
+
+//ClientHasLocal表示某个CID是否在本地存储。
 
 ClientHasLocal(ctx context.Context, root cid.Cid) (bool, error)
 
@@ -557,11 +561,15 @@ ClientHasLocal(ctx context.Context, root cid.Cid) (bool, error)
 
 ​    // ClientFindData identifies peers that have a certain file, and returns QueryOffers (one per peer).
 
+//ClientFindData标识具有特定文件的对等方，并返回QueryOffers（每个对等方一个）。
+
 ClientFindData(ctx context.Context, root cid.Cid) ([]QueryOffer, error)
 
  
 
 ​    // ClientMinerQueryOffer returns a QueryOffer for the specific miner and file.
+
+//ClientMinerQueryOffer返回特定miner和文件的QueryOffer。
 
 ClientMinerQueryOffer(ctx context.Context, root cid.Cid, miner address.Address) (QueryOffer, error)
 
@@ -569,11 +577,15 @@ ClientMinerQueryOffer(ctx context.Context, root cid.Cid, miner address.Address) 
 
 ​    // ClientRetrieve initiates the retrieval of a file, as specified in the order.
 
+//ClientRetrieve启动文件的检索，按顺序指定。
+
 ClientRetrieve(ctx context.Context, order RetrievalOrder, ref *FileRef) error
 
  
 
 ​    // ClientQueryAsk returns a signed StorageAsk from the specified miner.
+
+//ClientQueryAsk从指定的miner返回签名的StorageAsk。
 
 ClientQueryAsk(ctx context.Context, p peer.ID, miner address.Address) (*storagemarket.SignedStorageAsk, error)
 
@@ -581,11 +593,15 @@ ClientQueryAsk(ctx context.Context, p peer.ID, miner address.Address) (*storagem
 
 ​    // ClientCalcCommP calculates the CommP for a specified file, based on the sector size of the provided miner.
 
+//ClientCalcCommP根据提供的miner的扇区大小计算指定文件的CommP。
+
 ClientCalcCommP(ctx context.Context, inpath string, miner address.Address) (*CommPRet, error)
 
  
 
 ​    // ClientGenCar generates a CAR file for the specified file.
+
+//ClientGenCar为指定的文件生成CAR文件。
 
 ​    ClientGenCar(ctx context.Context, ref FileRef, outpath string) error
 
@@ -593,11 +609,15 @@ ClientCalcCommP(ctx context.Context, inpath string, miner address.Address) (*Com
 
 ​    // ClientUnimport removes references to the specified file from filestore
 
+//ClientUnimport从文件存储中删除对指定文件的引用
+
 ​    //ClientUnimport(path string)
 
  
 
 ​    // ClientListImports lists imported files and their root CIDs
+
+//ClientListImports列出导入的文件及其根cid
 
 ​    ClientListImports(ctx context.Context) ([]Import, error)
 
@@ -615,9 +635,17 @@ ClientCalcCommP(ctx context.Context, inpath string, miner address.Address) (*Com
 
 ​    // A nil TipSetKey can be provided as a param, this will cause the heaviest tipset in the chain to be used.
 
+//State方法用于查询、检查和与chain State交互。
+
+//所有方法都以TipSetKey作为参数。查到的state就是那个tipsetkey。
+
+//可以将nil TipSetKey作为param提供，这将导致链中最重的tipset将被使用。
+
  
 
 ​    // StateCall runs the given message and returns its result without any persisted changes.
+
+//StateCall运行给定的消息并返回其结果，而不进行任何持久的更改。
 
 StateCall(context.Context, *types.Message, types.TipSetKey) (*InvocResult, error)
 
@@ -625,11 +653,15 @@ StateCall(context.Context, *types.Message, types.TipSetKey) (*InvocResult, error
 
 ​    // StateReplay returns the result of executing the indicated message, assuming it was executed in the indicated tipset.
 
+//staterelay返回执行指定消息的结果，假设它是在指定的tipset中执行的。
+
 StateReplay(context.Context, types.TipSetKey, cid.Cid) (*InvocResult, error)
 
  
 
 ​    // StateGetActor returns the indicated actor's nonce and balance.
+
+//StateGetActor返回指定的actor的nonce和balance。
 
 StateGetActor(ctx context.Context, actor address.Address, tsk types.TipSetKey) (*types.Actor, error)
 
@@ -637,17 +669,23 @@ StateGetActor(ctx context.Context, actor address.Address, tsk types.TipSetKey) (
 
 ​    // StateReadState returns the indicated actor's state.
 
+//StateReadState返回指定参与者的状态。
+
 StateReadState(ctx context.Context, actor address.Address, tsk types.TipSetKey) (*ActorState, error)
 
  
 
 ​    // StateListMessages looks back and returns all messages with a matching to or from address, stopping at the given height.
 
+//StateListMessages回溯并返回所有与“收件人”或“发件人”地址匹配的消息，并在给定的高度停止。
+
 ​    StateListMessages(ctx context.Context, match *types.Message, tsk types.TipSetKey, toht abi.ChainEpoch) ([]cid.Cid, error)
 
  
 
 ​    // StateNetworkName returns the name of the network the node is synced to
+
+//StateNetworkName返回节点同步到的网络的名称
 
 StateNetworkName(context.Context) (dtypes.NetworkName, error)
 
@@ -659,11 +697,19 @@ StateNetworkName(context.Context) (dtypes.NetworkName, error)
 
 ​    // If false, only those sectors in the filter are included.
 
+////StateMinerSectors返回有关给定矿工部门的信息。如果过滤器位字段为零，则包括所有扇区。
+
+//如果filterOut布尔值设置为true，则排除筛选器中的所有扇区。
+
+//如果为false，则只包括过滤器中的那些扇区。
+
 StateMinerSectors(context.Context, address.Address, *abi.BitField, bool, types.TipSetKey) ([]*ChainSectorInfo, error)
 
  
 
 ​    // StateMinerProvingSet returns info about those sectors that a given miner is actively proving.
+
+//StateMinerProvingSet返回给定miner正在积极证明的那些扇区的信息。
 
 StateMinerProvingSet(context.Context, address.Address, types.TipSetKey) ([]*ChainSectorInfo, error)
 
@@ -673,11 +719,15 @@ StateMinerProvingSet(context.Context, address.Address, types.TipSetKey) ([]*Chai
 
 ​    // and returns the deadline-related calculations.
 
+//StateMinerProvingDeadline计算某个纪元的证明期的截止日期，并返回与截止日期相关的计算结果。
+
 StateMinerProvingDeadline(context.Context, address.Address, types.TipSetKey) (*miner.DeadlineInfo, error)
 
  
 
 ​    // StateMinerPower returns the power of the indicated miner
+
+//StateMinerPower返回指定矿工的算力
 
 StateMinerPower(context.Context, address.Address, types.TipSetKey) (*MinerPower, error)
 
@@ -685,11 +735,15 @@ StateMinerPower(context.Context, address.Address, types.TipSetKey) (*MinerPower,
 
 ​    // StateMinerInfo returns info about the indicated miner
 
+//StateMinerInfo返回有关指定miner的信息
+
 StateMinerInfo(context.Context, address.Address, types.TipSetKey) (MinerInfo, error)
 
  
 
 ​    // StateMinerDeadlines returns all the proving deadlines for the given miner
+
+//stateminertimes返回给定miner的所有证明截止日期
 
 StateMinerDeadlines(context.Context, address.Address, types.TipSetKey) (*miner.Deadlines, error)
 
@@ -697,11 +751,15 @@ StateMinerDeadlines(context.Context, address.Address, types.TipSetKey) (*miner.D
 
 ​    // StateMinerFaults returns a bitfield indicating the faulty sectors of the given miner
 
+//StateMinerFaults返回一个位域，指示给定miner的故障扇区
+
 StateMinerFaults(context.Context, address.Address, types.TipSetKey) (*abi.BitField, error)
 
  
 
 ​    // StateAllMinerFaults returns all non-expired Faults that occur within lookback epochs of the given tipset
+
+//StateAllMinerFaults返回在给定tipset的回望周期内发生的所有未过期的错误
 
 StateAllMinerFaults(ctx context.Context, lookback abi.ChainEpoch, ts types.TipSetKey) ([]*Fault, error)
 
@@ -709,11 +767,15 @@ StateAllMinerFaults(ctx context.Context, lookback abi.ChainEpoch, ts types.TipSe
 
 ​    // StateMinerRecoveries returns a bitfield indicating the recovering sectors of the given miner
 
+//stateminerecoveries返回一个位字段，指示给定miner的恢复扇区
+
 StateMinerRecoveries(context.Context, address.Address, types.TipSetKey) (*abi.BitField, error)
 
  
 
 ​    // StateMinerInitialPledgeCollateral returns the initial pledge collateral for the specified miner's sector
+
+//statemineInitialDegordeCallateral返回指定矿业部门的初始质押抵押品
 
 StateMinerInitialPledgeCollateral(context.Context, address.Address, abi.SectorNumber, types.TipSetKey) (types.BigInt, error)
 
@@ -721,11 +783,15 @@ StateMinerInitialPledgeCollateral(context.Context, address.Address, abi.SectorNu
 
 ​    // StateMinerAvailableBalance returns the portion of a miner's balance that can be withdrawn or spent
 
+//StateMinerAvailableBalance返回矿工余额中可以提取或使用的部分
+
 StateMinerAvailableBalance(context.Context, address.Address, types.TipSetKey) (types.BigInt, error)
 
  
 
 ​    // StateSectorPreCommitInfo returns the PreCommit info for the specified miner's sector
+
+//StateSectorPremitInfo返回指定矿工扇区的预提交信息
 
 StateSectorPreCommitInfo(context.Context, address.Address, abi.SectorNumber, types.TipSetKey) (miner.SectorPreCommitOnChainInfo, error)
 
@@ -733,13 +799,17 @@ StateSectorPreCommitInfo(context.Context, address.Address, abi.SectorNumber, typ
 
 ​    // StateSectorGetInfo returns the on-chain info for the specified miner's sector
 
+//StateSectorGetInfo返回指定矿工扇区的链上信息
+
 ​    StateSectorGetInfo(context.Context, address.Address, abi.SectorNumber, types.TipSetKey) (*miner.SectorOnChainInfo, error)
 
 StatePledgeCollateral(context.Context, types.TipSetKey) (types.BigInt, error)
 
  
 
-​    // StateSearchMsg searches for a message in the chain, and returns its receipt and the tipset where it was executed
+ // StateSearchMsg searches for a message in the chain, and returns its receipt and the tipset where it was executed
+
+//StateSearchMsg在链中搜索消息，并返回其收据和执行该消息的提示集
 
 StateSearchMsg(context.Context, cid.Cid) (*MsgLookup, error)
 
@@ -749,11 +819,15 @@ StateSearchMsg(context.Context, cid.Cid) (*MsgLookup, error)
 
 ​    // message arrives on chain, and gets to the indicated confidence depth.
 
+//StateWaitMsg在链中查找消息。如果没有找到，它将阻塞，直到消息到达链上，并达到指定的置信深度。
+
 StateWaitMsg(ctx context.Context, cid cid.Cid, confidence uint64) (*MsgLookup, error)
 
  
 
 ​    // StateListMiners returns the addresses of every miner that has claimed power in the Power Actor
+
+//StateListMiners返回每个在权力参与者中声称拥有权力的矿工的地址
 
 StateListMiners(context.Context, types.TipSetKey) ([]address.Address, error)
 
@@ -761,11 +835,15 @@ StateListMiners(context.Context, types.TipSetKey) ([]address.Address, error)
 
 ​    // StateListActors returns the addresses of every actor in the state
 
+//StateListActors返回状态中每个参与者的地址
+
 StateListActors(context.Context, types.TipSetKey) ([]address.Address, error)
 
  
 
 ​    // StateMarketBalance looks up the Escrow and Locked balances of the given address in the Storage Market
+
+//StateMarketBalance在存储市场中查找给定地址的托管和锁定余额
 
 StateMarketBalance(context.Context, address.Address, types.TipSetKey) (MarketBalance, error)
 
@@ -773,11 +851,15 @@ StateMarketBalance(context.Context, address.Address, types.TipSetKey) (MarketBal
 
 ​    // StateMarketParticipants returns the Escrow and Locked balances of every participant in the Storage Market
 
+//StateMarketParticipants返回存储市场中每个参与者的托管和锁定余额
+
 StateMarketParticipants(context.Context, types.TipSetKey) (map[string]MarketBalance, error)
 
  
 
 ​    // StateMarketDeals returns information about every deal in the Storage Market
+
+//StateMarketDeals返回存储市场中每个交易的信息
 
 StateMarketDeals(context.Context, types.TipSetKey) (map[string]MarketDeal, error)
 
@@ -785,17 +867,23 @@ StateMarketDeals(context.Context, types.TipSetKey) (map[string]MarketDeal, error
 
 ​    // StateMarketStorageDeal returns information about the indicated deal
 
+//StateMarketStorageDeal返回有关指定交易的信息
+
 StateMarketStorageDeal(context.Context, abi.DealID, types.TipSetKey) (*MarketDeal, error)
 
  
 
 ​    // StateLookupID retrieves the ID address of the given address
 
+//StateLookupID检索给定地址的ID地址
+
 StateLookupID(context.Context, address.Address, types.TipSetKey) (address.Address, error)
 
  
 
 ​    // StateAccountKey returns the public key address of the given ID address
+
+//StateAccountKey返回给定ID地址的公钥地址
 
 StateAccountKey(context.Context, address.Address, types.TipSetKey) (address.Address, error)
 
@@ -805,17 +893,25 @@ StateAccountKey(context.Context, address.Address, types.TipSetKey) (address.Addr
 
 ​    // TODO: Should this take tipset keys instead?
 
+//StateChangedActors返回其状态在两个给定状态cid之间变化的所有参与者
+
+//TODO:是否应该改为使用tipset键？
+
 StateChangedActors(context.Context, cid.Cid, cid.Cid) (map[string]types.Actor, error)
 
  
 
 ​    // StateGetReceipt returns the message receipt for the given message
 
+//StateGetReceipt返回给定消息的消息回执
+
 StateGetReceipt(context.Context, cid.Cid, types.TipSetKey) (*types.MessageReceipt, error)
 
  
 
 ​    // StateMinerSectorCount returns the number of sectors in a miner's sector set and proving set
+
+//StateMinerSectorCount返回矿工的扇区集和证明集中的扇区数
 
 StateMinerSectorCount(context.Context, address.Address, types.TipSetKey) (MinerSectors, error)
 
@@ -824,6 +920,10 @@ StateMinerSectorCount(context.Context, address.Address, types.TipSetKey) (MinerS
 ​    // StateCompute is a flexible command that applies the given messages on the given tipset.
 
 ​    // The messages are run as though the VM were at the provided height.
+
+//StateCompute是一个灵活的命令，它将给定的消息应用于给定的tipset。
+
+//消息的运行方式与虚拟机在提供的高度相同。
 
 ​    StateCompute(context.Context, abi.ChainEpoch, []*types.Message, types.TipSetKey) (*ComputeStateOutput, error)
 
@@ -835,9 +935,13 @@ StateMinerSectorCount(context.Context, address.Address, types.TipSetKey) (MinerS
 
 ​    // filecoin network
 
- 
+ //Msig方法用于与filecoin网络上的multisig钱包交互
+
+
 
 ​    // MsigGetAvailableBalance returns the portion of a multisig's balance that can be withdrawn or spent
+
+//MsigGetAvailableBalance返回multisig余额中可以提取或使用的部分
 
 MsigGetAvailableBalance(context.Context, address.Address, types.TipSetKey) (types.BigInt, error)
 
@@ -845,15 +949,19 @@ MsigGetAvailableBalance(context.Context, address.Address, types.TipSetKey) (type
 
 ​    // MsigCreate creates a multisig wallet
 
-​    // It takes the following params: <required number of senders>, <approving addresses>, <unlock duration>
+//MsigCreate创建一个multisig钱包
 
-​    //<initial balance>, <sender address of the create msg>, <gas price>
+​    // It takes the following params: <required number of senders>, <approving addresses>, <unlock duration><initial balance>, <sender address of the create msg>, <gas price>
+
+//它采用以下参数：<required number of senders>，<approving addresses>，<unlock duration>,<initial balance>, <sender address of the create msg>, <gas price>
 
 MsigCreate(context.Context, int64, []address.Address, abi.ChainEpoch, types.BigInt, address.Address, types.BigInt) (cid.Cid, error)
 
  
 
 ​    // MsigPropose proposes a multisig message
+
+//MsigPropose提出一个multisig消息
 
 ​    // It takes the following params: <multisig address>, <recipient address>, <value to transfer>,
 
@@ -865,6 +973,8 @@ MsigPropose(context.Context, address.Address, address.Address, types.BigInt, add
 
 ​    // MsigApprove approves a previously-proposed multisig message
 
+//MsigApprove批准先前提出的multisig消息
+
 ​    // It takes the following params: <multisig address>, <proposed message ID>, <proposer address>, <recipient address>, <value to transfer>,
 
 ​    // <sender address of the approve msg>, <method to call in the proposed message>, <params to include in the proposed message>
@@ -874,6 +984,8 @@ MsigApprove(context.Context, address.Address, uint64, address.Address, address.A
  
 
 ​    // MsigCancel cancels a previously-proposed multisig message
+
+//MsigCancel取消先前建议的multisig消息
 
 ​    // It takes the following params: <multisig address>, <proposed message ID>, <recipient address>, <value to transfer>,
 
@@ -885,6 +997,8 @@ MsigCancel(context.Context, address.Address, uint64, address.Address, types.BigI
 
 ​    // MsigSwapPropose proposes swapping 2 signers in the multisig
 
+//MsigSwapPropose建议在multisig中交换2个签名者
+
 ​    // It takes the following params: <multisig address>, <sender address of the propose msg>,
 
 ​    // <old signer> <new signer>
@@ -895,6 +1009,8 @@ MsigSwapPropose(context.Context, address.Address, address.Address, address.Addre
 
 ​    // MsigSwapApprove approves a previously proposed SwapSigner
 
+//MsigSwapApprove批准先前提议的SwapSigner
+
 ​    // It takes the following params: <multisig address>, <sender address of the approve msg>, <proposed message ID>,
 
 ​    // <proposer address>, <old signer> <new signer>
@@ -904,6 +1020,8 @@ MsigSwapApprove(context.Context, address.Address, address.Address, uint64, addre
  
 
 ​    // MsigSwapCancel cancels a previously proposed SwapSigner message
+
+//MsigSwapCancel取消先前建议的SwapSigner消息
 
 ​    // It takes the following params: <multisig address>, <sender address of the cancel msg>, <proposed message ID>,
 
@@ -923,7 +1041,7 @@ MsigSwapApprove(context.Context, address.Address, address.Address, uint64, addre
 
 ​    // The Paych methods are for interacting with and managing payment channels
 
- 
+ //Paych方法用于与支付渠道进行交互和管理
 
 PaychGet(ctx context.Context, from, to address.Address, ensureFunds types.BigInt) (*ChannelInfo, error)
 
