@@ -250,9 +250,77 @@
 
 4.ChainGetBlock返回给定cid 对应的块。
 
-请求：{ "jsonrpc": "2.0", "method": "Filecoin.ChainGetBlock", "params": [‘cid’], "id": 3}
+请求：
 
- 
+{ "jsonrpc": "2.0", "method": "Filecoin.ChainGetBlock", "params": [ {
+                "/": "bafy2bzaceczb5gpwzmfihank53ba43h4rjl23k5pcx7z43xdmo4p5fofh22qa"
+            }], "id": 3}
+
+返回：
+
+ {
+    "jsonrpc": "2.0",
+    "result": {
+        "Miner": "t02020",
+        "Ticket": {
+            "VRFProof": "tBAnDLr5XJx7uxmwrq17NeesRdY+dgXxBlLN2pPyGAMTaC+UPw8xPjh5PQ5GKX5EDFKNAN4yZFp/fb73F6i3Pato34Q/yuoj/SZ7sAItpiL/JeSgVjIOOZFBEv4u+K0K"
+        },
+        "ElectionProof": {
+            "VRFProof": "obznWuJs20p9H/jpc9WiYdiHx8qzUusCJQ7mg1L8i8S4aj38i93vpcOO9eU1w3CpCPyEiArDNtOpDycWOyC/a/TxKPT6B6dcsI2sPqPfkVeI56aXErE86on0yohHiQ2P"
+        },
+        "BeaconEntries": [
+            {
+                "Round": 205553,
+                "Data": "gSneVmV85fYyZqj1ZFs1IAm/E9pz2BF17nllLx2zEMRFAEWxAm/hojE0tdypnZHGEvZvF5iZcfE7bmDGOv/MqL68pbS0cq/hLAmzLm9cBmIT5pBB3UsL8CeH6sirqxGC"
+            }
+        ],
+        "WinPoStProof": [
+            {
+                "PoStProof": 3,
+                "ProofBytes": "ssRkJlKHWssmh8abFvrN5x1rV3FQC9WAM2hYK2NNjDQEelUMx+CJ0P941uQylqCzkf7MQPJ0r3DjJgAPDOgPOBKsdPR4BXOurw1mY53Lx7xXpfwwROJqdea29tr3ktxHBZsArq3Sl5cCE43igpJsVcGhP6iD7Kb3L9w1gXcRkugnFgYoNZL3OEP5jLQY1z86opdTp1uwkr5eivEt+sqRSK+af7bC7GiQZ5Q61b2Vxs2+yuyd7+JsotDDdLwp5fXs"
+            }
+        ],
+        "Parents": [
+            {
+                "/": "bafy2bzacea24lcnctzolxc24k5utvvn33mgub4a3bfka7436jv32h3fviechg"
+            },
+            {
+                "/": "bafy2bzaceaeqajdqvcfjgroissn5jhwcsk6yyyo5gh5h34igt5kdbmdmpny24"
+            },
+            {
+                "/": "bafy2bzaceceld4xndb7tzrhmhoewlqhqstdjwtpfrenwpao7hzuhhf5s7hlzm"
+            },
+            {
+                "/": "bafy2bzacebatzr6572caj66bjnodkkntvszmwyudujjrgl75vxlbl2hofxctk"
+            },
+            {
+                "/": "bafy2bzaceb7roytvblia5jdl4g6z2jdoqzabqfepuef2speygklzrrba6evy2"
+            }
+        ],
+        "ParentWeight": "2095869309",
+        "Height": 122369,
+        "ParentStateRoot": {
+            "/": "bafy2bzacedcsprjo7ipsouwhesmuy76aqu4mq4kwedc3cvq22wekv3bbbzbgg"
+        },
+        "ParentMessageReceipts": {
+            "/": "bafy2bzacebadtki4dspp4edeuq4vekzfxvuohyhue6v2srovxxhxqfyp7gama"
+        },
+        "Messages": {
+            "/": "bafy2bzacea6jmp6dzwdabjb6mo2mu6irgxubsiinoyc5vbfhtivqtqsw4jc7i"
+        },
+        "BLSAggregate": {
+            "Type": 2,
+            "Data": "gkkY1vzxrXhhOL8PoGMhZ/9ZUuxXf0Q4zNey4PICHv89jDG4ylpGTUZ7WI/S+Yw6AvA5RCtzsqJ5cScF8JvkZhbpWjKMGhUKchZToR8sIYozlekY7QTSpPnMgRViDc+u"
+        },
+        "Timestamp": 1595584025,
+        "BlockSig": {
+            "Type": 2,
+            "Data": "tfXovluNzXPsXJAr3CDWQtnXFTAJvSBjyyTZ2qghhBJxITKuDztqtCtmcFW2qq5VBsW7xAYNWZe3XmaXxtAo+10DC+TK0p45ZFzJYzd0+7mHwJZxS7pcu4nRERZCpgY8"
+        },
+        "ForkSignaling": 0
+    },
+    "id": 3
+}
 
 5.ChainGetTipSet返回由给定的TipSetKey指定的tipset。
 
@@ -262,9 +330,129 @@
 
 6. ChainGetBlockMessages 返回存储在指定区块的信息 
 
-请求：{ "jsonrpc": "2.0", "method": "Filecoin.ChainGetBlockMessages", "params": [‘cid’], "id": 3}
+请求：{ "jsonrpc": "2.0", "method": "Filecoin.ChainGetBlockMessages", "params": [ {
+                "/": "bafy2bzaceczb5gpwzmfihank53ba43h4rjl23k5pcx7z43xdmo4p5fofh22qa"
+            }], "id": 3}
 
- 
+返回： {
+    "jsonrpc": "2.0",
+    "result": {
+        "BlsMessages": [
+            {
+                "Version": 0,
+                "To": "t0118797",
+                "From": "t3u7zjnzvigkpwokge5tu5jkvdtdlwlo2je4uub6uz6guj4vro2jp6ktzh2ksyft36hyjwwocbpca435p2defa",
+                "Nonce": 35082,
+                "Value": "0",
+                "GasPrice": "1",
+                "GasLimit": 1000000,
+                "Method": 6,
+                "Params": "hgMZH0zYKlgmAAFVwh8gU7yavPfBSHOsoVYQ3gg+YMlTJ4bvn7/xYofMs8ZFbEEaAAHQxoAaAJp7sw=="
+            },
+            {
+                "Version": 0,
+                "To": "t0118768",
+                "From": "t3qyssqgkgqxa6ims36v3zsfutjhmj5zeljfob7nfsyhkq7ursmkjsdt3bkapbyrhetuobjfzknls2ianmeona",
+                "Nonce": 166689,
+                "Value": "0",
+                "GasPrice": "1",
+                "GasLimit": 1000000,
+                "Method": 6,
+                "Params": "hgMaAAHjmdgqWCYAAVXCHyAM8peDB92l2vgBOuEgc5P3fawHuWLilmCiOgnMdwK9LRoAAcqEgBoAmnwB"
+            },
+            {
+                "Version": 0,
+                "To": "t0118768",
+                "From": "t3qyssqgkgqxa6ims36v3zsfutjhmj5zeljfob7nfsyhkq7ursmkjsdt3bkapbyrhetuobjfzknls2ianmeona",
+                "Nonce": 166690,
+                "Value": "0",
+                "GasPrice": "1",
+                "GasLimit": 1000000,
+                "Method": 6,
+                "Params": "hgMaAAHmS9gqWCYAAVXCHyBZIQSCV5fgZ9kqp9mwU+GjnjmlmtUg3iQMKNdSrKAHIBoAAdergBoAmnwB"
+            }
+        ],
+        "SecpkMessages": [],
+        "Cids": [
+            {
+                "/": "bafy2bzacedouholso62e55n2lgpg4zstjfiuo77w6pqd6hdftytofnpksfvmi"
+            },
+            {
+                "/": "bafy2bzaceaez5hcfyvzftztatfqhqfuw2q3erltqfq3zhvdbj2riel5qhpw2m"
+            },
+            {
+                "/": "bafy2bzaceanbzyuy2teswt7xnrjkowywwpduhfhgcaix6g64o5az6idvmhsfo"
+            },
+            {
+                "/": "bafy2bzacecvcdcnv553r2zwlsgdsgnvhznxgqzwnlbuihlg5xwqbzecom6qwi"
+            },
+            {
+                "/": "bafy2bzacea3olngazsmvlzfuscngx7p2glw2k2ldsex4conoovh6oeygra5pc"
+            },
+            {
+                "/": "bafy2bzaceajuq3m2lxyskach73pxpy6baygntwn3dledaftgiscact2lgdupk"
+            },
+            {
+                "/": "bafy2bzacedoobhoznm2r3uufi2cbka4dwuuhx26qwmpg2qtrr76fcpwekfmrw"
+            },
+            {
+                "/": "bafy2bzacear67sq5pfdiqz223czfcg3wz2dxlc77bufeeiyt3vgur5m5jjtee"
+            },
+            {
+                "/": "bafy2bzacebgpzsv3jqpz2ct5fgo5cxvcydzofkkcs45fgnykmwugienvi3uv6"
+            },
+            {
+                "/": "bafy2bzacebeaxyiifekp5yndj5ylixzzszv2qtooti6u6m5ql6lxboxzxdzma"
+            },
+            {
+                "/": "bafy2bzaceajl2wfmg6mmfl7yq3xmthi6adiaotftb2c6t4wzk7o6s4kvjpcge"
+            },
+            {
+                "/": "bafy2bzacecqvugiek2n2udnnqcwmpcv5rgflaqogrcb3z47vicnqkyxl5cg42"
+            },
+            {
+                "/": "bafy2bzacebn5kwfmoz66kfumvnecnvq7pnn6jbjx2skjlv2ludeta25ggv3ik"
+            },
+            {
+                "/": "bafy2bzacebvmhiy6lpi6tibshjjrazug2iyarrcn4yn635osg7im2vto345wa"
+            },
+            {
+                "/": "bafy2bzacedxxoqcddqevezwd5fqqva3mejj74rnl4ia34j7jhw3qmna7zxzou"
+            },
+            {
+                "/": "bafy2bzacedoq7eofq3avlqalt23wa66nk2dzmoliuencrm6vjjrgawdfpklhm"
+            },
+            {
+                "/": "bafy2bzacedzb3zfasae6kt776de2lw7zllobu4dqhlrj44iofeiztd5kt3z7c"
+            },
+            {
+                "/": "bafy2bzacecqxyulmxzahiwl7arzvkpoexwmejdiqnoy6nfmvggs3cmqknish4"
+            },
+            {
+                "/": "bafy2bzaceauqpj4qgefne2jbilndmmlfzh7z6aoamicqk5irfixbeal5aaruc"
+            },
+            {
+                "/": "bafy2bzacecsrg3ndpxjyqgqpkf2eslteuqhcpl5xzjnrtzu5cd7afavflopvu"
+            },
+            {
+                "/": "bafy2bzacea2ckhgrioa7oyaqbdr335wtfgrvyewfxjiwgb5hx2qujkfowevfy"
+            },
+            {
+                "/": "bafy2bzaceai5q3u4u2t4vvfjnmdcwqzyh4caogx2hy4t5z6x67oxs462wcppm"
+            },
+            {
+                "/": "bafy2bzacedt3bm7qr73hauxbxnailwbscbbxzgnh33q5vfqsqzsselvsnpd4c"
+            },
+            {
+                "/": "bafy2bzacec4zoa7hcluevabmmv3ejxqqqpvpa3r37ap57smm5m24buoty6cum"
+            },
+            {
+                "/": "bafy2bzaceauomocmd7e7ipt26vpzec3pqfidefowtlm4tzmut5pn5rm3p3hfq"
+            }
+        ]
+    },
+    "id": 3
+}
 
 7.ChainGetParentReceipts返回指定块的父提示集中消息的收据。
 
@@ -310,7 +498,54 @@
 
 请求：{ "jsonrpc": "2.0", "method": "Filecoin.ChainGetGenesis", "params": [], "id": 3}
 
- 
+ 返回：
+
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "Cids": [
+            {
+                "/": "bafy2bzacednghy3w2e42xqrgeisswleti2uf2dno4ffaieuge2wfrbigqwdv6"
+            }
+        ],
+        "Blocks": [
+            {
+                "Miner": "t00",
+                "Ticket": {
+                    "VRFProof": "dnJmIHByb29mMDAwMDAwMHZyZiBwcm9vZjAwMDAwMDA="
+                },
+                "ElectionProof": {
+                    "VRFProof": ""
+                },
+                "BeaconEntries": [
+                    {
+                        "Round": 0,
+                        "Data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+                    }
+                ],
+                "WinPoStProof": null,
+                "Parents": null,
+                "ParentWeight": "0",
+                "Height": 0,
+                "ParentStateRoot": {
+                    "/": "bafy2bzaceabkxvqaj6q6u2bq4nzmwkk7c4buzj76yoek3yxfptaia6hstuxik"
+                },
+                "ParentMessageReceipts": {
+                    "/": "bafy2bzaceaa43et73tgxsoh2xizd4mxhbrcfig4kqp25zfa5scdgkzppllyuu"
+                },
+                "Messages": {
+                    "/": "bafy2bzacecgw6dqj4bctnbnyqfujltkwu7xc7ttaaato4i5miroxr4bayhfea"
+                },
+                "BLSAggregate": null,
+                "Timestamp": 1592524800,
+                "BlockSig": null,
+                "ForkSignaling": 0
+            }
+        ],
+        "Height": 0
+    },
+    "id": 3
+}
 
 14.ChainTipSetWeight计算指定types.TipSetKey的权重
 
