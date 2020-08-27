@@ -472,9 +472,189 @@
 
 //将被返回。
 
-请求：{ "jsonrpc": "2.0", "method": "Filecoin.ChainGetTipSetByHeight", "params": [abi.ChainEpoch, types.TipSetKey], "id": 3}
+请求：{ "jsonrpc": "2.0", "method": "Filecoin.ChainGetTipSetByHeight", "params": [1000,[]], "id": 3}
 
- 
+返回：{
+    "jsonrpc": "2.0",
+    "result": {
+        "Cids": [
+            {
+                "/": "bafy2bzacebon4wlqfaewphiivoj5cbt5kdbityxsttafawvrsyqlcv2le42zg"
+            },
+            {
+                "/": "bafy2bzaceaaacbh36aqlu43yoymof2imzfmyyex3znra2ohm5fe6g3lyuaqj6"
+            },
+            {
+                "/": "bafy2bzacebpa3libleq32g5aepyefpuidzxfb7ft4xx65p7yojotpcv2l3bvg"
+            }
+        ],
+        "Blocks": [
+            {
+                "Miner": "t01001",
+                "Ticket": {
+                    "VRFProof": "hhVG3W4xJXDyqkRDNGUQTD+TS02CNNAMoKdDwqlelUfhdPGp6tOlAVrak3Ag0AdZEJjTOk3aTVNOSjVgMJoUG2/ZhThmmUyuNKXRdWLPmQmb4f4apejbfMOCHZAscAAx"
+                },
+                "ElectionProof": {
+                    "VRFProof": "k0GuiahPJmHESFDva/t81rtucYxZHYB1P3CPWhb0SipWPEdmObOg5yxZzgtno9EGDCoi+heCWL8SlOAq4156D3qCVxJwx/gkPRM4d3Aivgz2lqxQm1t3arQ2M+tXivf1"
+                },
+                "BeaconEntries": [
+                    {
+                        "Round": 84184,
+                        "Data": "tzoxHiAWZ9wcyWfxQPkXuQX0T0bL4ci66jlHnSR8xSZsb39+C//HIXXp7QchWsutBdbj4uO+QZB0SSqB9soZMBof/Tv2z5ugYmer+I6a3fX+pChSAWpfUswWMhOZvbde"
+                    }
+                ],
+                "WinPoStProof": [
+                    {
+                        "PoStProof": 3,
+                        "ProofBytes": "rEen4e/vObaF7l/F4S6kll5vS5bgWXGe1XH7Z4PPFIE0gePbN2sBS7C4aDzhI0MWhzjt6y/l/1xKWusCwIhVMdsrovDXd6sp7FzXafE0EjtkwsQciiZlCLJZ7N3hRIAVBavIvM0r982tjmXodow8u95aKaPl03tyqOucK7y2dUClUXjFVqpE4PffWd1rxiIQi2qzFImfT2bWKauAFcvSQxj7TNOpUyfa2HwwKDwrs5hyo8g0Prdq7k6nEb5VWato"
+                    }
+                ],
+                "Parents": [
+                    {
+                        "/": "bafy2bzacedxvb3b23ykw6qmtllvcpcdgtvji5yhos2g3de4kes3hqhpwbt5tw"
+                    },
+                    {
+                        "/": "bafy2bzacecgxaaophzkfkmdwxvchiypvj4yn6c4n4jfwd3j3mljytw2malxvm"
+                    },
+                    {
+                        "/": "bafy2bzaceaehtzkxoixe24646g2qxmljya7gpcjjpfwm7hqgjlgnppjvobcj4"
+                    }
+                ],
+                "ParentWeight": "14962176",
+                "Height": 1000,
+                "ParentStateRoot": {
+                    "/": "bafy2bzacebquzav62w2resojjh6osjunhvp3urb5uwoyicb7tk3cll5pkxy6m"
+                },
+                "ParentMessageReceipts": {
+                    "/": "bafy2bzacecucn3b6djew4mm3ix4kcdxbkipqsjaupzfy7aqdclcenzyxcjk7y"
+                },
+                "Messages": {
+                    "/": "bafy2bzacebfxtcojwppd3julsispbrtq7zlztg6ofdb2afjygswnxci6rrfgq"
+                },
+                "BLSAggregate": {
+                    "Type": 2,
+                    "Data": "k1CYlAKCFbzC49hwU9/f8C91BDzoDlWSxiGQRxPfzbP87NdSEBNinNrX/v2BcMD6B7NpIqTHdOOOePTVFR4QFqdRahYVMc6xLcpNvAkKL8RLgP9X/2v1LzcmaKOYUIL8"
+                },
+                "Timestamp": 1592549800,
+                "BlockSig": {
+                    "Type": 2,
+                    "Data": "oNOjkMsUi7DbEQv7RCcSNrzeOcAYlBMERUhqF1/JQhUj4RNkZLnVR3uC6ZivAuW1A5JWVVjrC4itnkLCZb8ZU69pyCeDhfAmliPHgrdI2tbKwKu9isBrReTgqzUeQhX4"
+                },
+                "ForkSignaling": 0
+            },
+            {
+                "Miner": "t01000",
+                "Ticket": {
+                    "VRFProof": "opiZ3dTXETMEjTbvq06lzeyUxwPY3iolGGTf82UPApLwUs3LGCrS12mkr1mzIWzeFSM4onAtFuy8TO0VvH5Zr1ai5tiJAaB2531gnOxdxiFEsmxyg5pmexK+C0/oYlAD"
+                },
+                "ElectionProof": {
+                    "VRFProof": "uPk/GjTTGCLtmfuMvyhZTI9iZoerZAheHnJbfJTmXm0WWtfGPCl/vSfDjIgar1rDDO/tPFvFdSLgdIlB3hnJYogp1VfZrbC36QQY0JRr1oUH0VwDOVVVOmGYaLgKNqcq"
+                },
+                "BeaconEntries": [
+                    {
+                        "Round": 84184,
+                        "Data": "tzoxHiAWZ9wcyWfxQPkXuQX0T0bL4ci66jlHnSR8xSZsb39+C//HIXXp7QchWsutBdbj4uO+QZB0SSqB9soZMBof/Tv2z5ugYmer+I6a3fX+pChSAWpfUswWMhOZvbde"
+                    }
+                ],
+                "WinPoStProof": [
+                    {
+                        "PoStProof": 3,
+                        "ProofBytes": "tZfllIAtkwp9MVqvtf/eAW9vqtmbd359ClecVn3ZyPoxkWPw0LYPA5BqiOySHcQ5l7HKPCQRf+oXpKjzo6JqrP9m9+4c1QbRDq0mHF+33FuoWcXO8YSBFYPATeSHTLxhE4GMOJGfzcrFIaZulC7yd7tzqiy0dmxrthlQzYmXY4HMuWOMb6cJrje5nGst6QKApImLDjPMh0gA2fEQyQZ/ZyvmK2mEVT/q0hXo99exzI31ilEO7JpCbaljNPG/I0+u"
+                    }
+                ],
+                "Parents": [
+                    {
+                        "/": "bafy2bzacedxvb3b23ykw6qmtllvcpcdgtvji5yhos2g3de4kes3hqhpwbt5tw"
+                    },
+                    {
+                        "/": "bafy2bzacecgxaaophzkfkmdwxvchiypvj4yn6c4n4jfwd3j3mljytw2malxvm"
+                    },
+                    {
+                        "/": "bafy2bzaceaehtzkxoixe24646g2qxmljya7gpcjjpfwm7hqgjlgnppjvobcj4"
+                    }
+                ],
+                "ParentWeight": "14962176",
+                "Height": 1000,
+                "ParentStateRoot": {
+                    "/": "bafy2bzacebquzav62w2resojjh6osjunhvp3urb5uwoyicb7tk3cll5pkxy6m"
+                },
+                "ParentMessageReceipts": {
+                    "/": "bafy2bzacecucn3b6djew4mm3ix4kcdxbkipqsjaupzfy7aqdclcenzyxcjk7y"
+                },
+                "Messages": {
+                    "/": "bafy2bzacedmkrxo4nphjkoguf5pryylans2i3lebp6l74gdje3ddbs6tdvgi2"
+                },
+                "BLSAggregate": {
+                    "Type": 2,
+                    "Data": "k1CYlAKCFbzC49hwU9/f8C91BDzoDlWSxiGQRxPfzbP87NdSEBNinNrX/v2BcMD6B7NpIqTHdOOOePTVFR4QFqdRahYVMc6xLcpNvAkKL8RLgP9X/2v1LzcmaKOYUIL8"
+                },
+                "Timestamp": 1592549800,
+                "BlockSig": {
+                    "Type": 2,
+                    "Data": "mRAX/7Wf0M5AEPd/PbBIf/6hxfh58oenNLPaf0fv74RU+D8KnY4+o1d4yakR0+3YCHbsJFOmZQ6eg5oPRk1RHkcGms5X0g0Apx2fcVynfZ02lG3sh7CZ4WLHIJw2f+lq"
+                },
+                "ForkSignaling": 0
+            },
+            {
+                "Miner": "t01002",
+                "Ticket": {
+                    "VRFProof": "r/+CqiM1qv1HOJMTjMPeOlxjtwIdeeRdAQAF4RWiyGUYR8+TK7R6eN7jQtYCpwDDDs26rgmIV+8QOhMIK1L3cCXTVwg5buNUO87sJ66m8hLyE3rYn1EazA/jcuXYzq48"
+                },
+                "ElectionProof": {
+                    "VRFProof": "o5ZfXRz1NxyYbw2OICIIz6l03kiH1jHd6zp08QMr80NDUO2TYqaIsu7cZAQ4MCUmF3u6wDQxUmmIUdHU4axkY5cFJS0vQ0O76XTuMgrir+00kgQDEpG253mXBVGaRmtC"
+                },
+                "BeaconEntries": [
+                    {
+                        "Round": 84184,
+                        "Data": "tzoxHiAWZ9wcyWfxQPkXuQX0T0bL4ci66jlHnSR8xSZsb39+C//HIXXp7QchWsutBdbj4uO+QZB0SSqB9soZMBof/Tv2z5ugYmer+I6a3fX+pChSAWpfUswWMhOZvbde"
+                    }
+                ],
+                "WinPoStProof": [
+                    {
+                        "PoStProof": 3,
+                        "ProofBytes": "lo0XNGTSWgH4VGfur93NPZaiiBWh/AsJL75n1BM9y9nt8bORfQ/JSeG2HeHSZzbUsTw2tT8dVh1VdtjkX47GivhFv68ZR3Z5CK1crIn6qOk1kv4TFQLhoJzeYtgLEldkGPGjJMuFDz1kcYMPzFo1LEw+nCwSGzoyc01iSAJyEo1ofBx06LLs/jBu3TfG4Zcjt+jjLd1hiSnNIEbaXhsuPk7W6jvVOHaDxR8iUfW+iSF65Aa4UwGKWR5VmWU9ysPf"
+                    }
+                ],
+                "Parents": [
+                    {
+                        "/": "bafy2bzacedxvb3b23ykw6qmtllvcpcdgtvji5yhos2g3de4kes3hqhpwbt5tw"
+                    },
+                    {
+                        "/": "bafy2bzacecgxaaophzkfkmdwxvchiypvj4yn6c4n4jfwd3j3mljytw2malxvm"
+                    },
+                    {
+                        "/": "bafy2bzaceaehtzkxoixe24646g2qxmljya7gpcjjpfwm7hqgjlgnppjvobcj4"
+                    }
+                ],
+                "ParentWeight": "14962176",
+                "Height": 1000,
+                "ParentStateRoot": {
+                    "/": "bafy2bzacebquzav62w2resojjh6osjunhvp3urb5uwoyicb7tk3cll5pkxy6m"
+                },
+                "ParentMessageReceipts": {
+                    "/": "bafy2bzacecucn3b6djew4mm3ix4kcdxbkipqsjaupzfy7aqdclcenzyxcjk7y"
+                },
+                "Messages": {
+                    "/": "bafy2bzaced3yke6jkm5ijxpdx5zrb2u5fjdd4ym2rcv7q3pnqnho6fe7g7r6g"
+                },
+                "BLSAggregate": {
+                    "Type": 2,
+                    "Data": "jsH1yzSM/MnNMkTr47jCwjkwcmlbejDujPxOQXfDYEg59I4T+1TbYhtfHeRB+7iKGSn/7EsvYZN9SFA92p8s7+LaMH3sMAYwLGDZnL1xZfazGOurZZitoX5WJbljqoC/"
+                },
+                "Timestamp": 1592549800,
+                "BlockSig": {
+                    "Type": 2,
+                    "Data": "krq7aAtWJ+n4CwXZKVsfMrItfO70n2h1V4h5PuFFDWlvCahwGVY0t2nR4dw9gcplAEJ5NChRcvaKfJUeUqFMGwKs+Lcga/0olaxMdS/2yAanNtdfklCb3zwODGFpWL9P"
+                },
+                "ForkSignaling": 0
+            }
+        ],
+        "Height": 1000
+    },
+    "id": 3
+}
+
+
 
 10.ChainReadObj从chain读取指定CID引用的ipld节点并返回原始字节。
 
